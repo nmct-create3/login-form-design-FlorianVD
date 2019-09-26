@@ -19,7 +19,27 @@
 \*------------------------------------*/
 
 :root {
+    --global-color-alpha-light: #4F95FF;
+    --global-color-alpha: #3385FF;
+    --global-color-alpha-dark: #2E77E6;
 
+    --global-color-neutral-xxxx-light: #F5F6FA;
+    --global-color-neutral-xxx-light: #E2E3E7; 
+    --global-color-neutral-xx-light: #CACCD4;
+    --global-color-neutral-x-light: #B5B6C0;
+    --global-color-neutral-light: #A0A1AD;
+    --global-color-neutral: #8B8C9A;
+    --global-color-neutral-dark: #757787;
+    --global-color-neutral-x-dark: #606274;
+    --global-color-neutral-xx-dark: #4B4C60;
+    --global-color-neutral-xxx-dark: #35374D;
+    --global-color-neutral-xxxx-dark: #20223A;
+
+    --global-color-shadow: #00000005;
+
+    --global-baseline: 8px;
+    --global-whitespace: calc(var(--global-baseline) * 3); /* = 24px */
+    --global-whitespace-xl: calc(var(--global-whitespace) * 2); /* = 48px */
 }
 
 /* CSS variables here */
@@ -38,11 +58,16 @@ html {
     font-size: 16px;
     line-height: 1.5;
     font-family: 'Inter', 'Comic Sans MS', Helvetica, arial, sans-serif;
-    color: #20223a;
+    color: var(--global-color-neutral-xxxx-dark);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #F5F6FA;
+    background-color: var(--global-color-neutral-xxxx-light);
+    height: 100%;
+}
+
+body {
+    height: 100%;
 }
 
 *,
@@ -59,13 +84,13 @@ html {
 */
 
 ::-moz-selection {
-    background: #3385FF;
+    background: var(--global-color-alpha);
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: #3385FF;
+    background: var(--global-color-alpha);
     color: white;
     text-shadow: none;
 }
@@ -170,18 +195,23 @@ hr {
 }
 
 a {
-    color: #3385FF;
+    color: var(--global-color-alpha);
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: #2E77E6;
+    color: var(--global-color-alpha);
 }
 
 a:hover,
 a:focus {
-    color: #4F95FF;
+    color: var(--global-color-alpha-light);
+}
+
+input,
+label {
+    display: block;
 }
 
 /*------------------------------------*\
@@ -201,6 +231,10 @@ a:focus {
 
 .o-row--login {
     /* stuff here to align the card */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* size modifiers */
@@ -443,19 +477,59 @@ a:focus {
     ---
     Website main logo
 */
+.c-logo {
+    height: 24px;
+    display: flex;
+    justify-content: center;
+}
 
+.c-logo__symbol {
+    height: 100%;
+    display: block;
+}
 /*
     Component: Card
     ---
     Card with box shadow
 */
+.c-card {
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #00000005;
+    box-shadow: 0 0 0 3px var(--global-color-shadow);
+}
 
+.c-card__body {
+    padding: 48px;
+}
+
+.c-card__title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    margin: 0;
+    padding-top: 48px;
+}
+
+.c-card__footer {
+    padding: 24px 0;
+    border-top: 1px solid var(--global-color-neutral-xxx-light);
+    text-align: center;
+}
+.c-card__footer p {
+    margin-bottom: 0;
+}
 /*
     Component: Forms
     ---
     Everything form related here
 */
-
+.c-form-field--option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 /*
     Component: Input
     ---
@@ -463,10 +537,27 @@ a:focus {
 */
 
 .c-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    border: 1px solid var(--global-color-neutral-xxx-light);
+    border-radius: 3px;
+    font-family: 'Inter';
+    color: #20223A;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 16px;
+}
 
+.c-input::placeholder {
+    color: #B5B6C0;
 }
 
 .c-input:focus {
+    outline: none;
+    border: 1px solid var(--global-color-alpha);
+    box-shadow: 0 0 0 3px #3385FF4d;
 }
 
 /*
@@ -476,7 +567,15 @@ a:focus {
 */
 
 .c-label {
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 8px;
+    color: #606274;
+}
 
+.c-label--option {
+    margin-bottom: 0;
+    margin-left: 8px;
 }
 
 /* If a input is focused within the form-field class change te color of the label */
@@ -492,19 +591,28 @@ a:focus {
 */
 
 .c-button {
-
+    color: white;
+    background-color: var(--global-color-alpha);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 3px;
+    width: 100%;
+    padding: 14px 0;
+    outline: none;
 }
 
 .c-button:hover {
-
+    background-color: #4F95FF;
 }
 
 .c-button:focus {
-
+    background-color: #2E77E6;
+    box-shadow: 0 0 0 3px #2E77E64d;
 }
 
 .c-button:active {
-
+    background-color: #2E77E6;
 }
 
 .c-button--block {
@@ -527,6 +635,10 @@ a:focus {
 
 .u-color-neutral-dark {
     color: Black;
+}
+
+.u-color-light-base {
+    color: #757787;
 }
 
 /*
