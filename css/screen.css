@@ -19,6 +19,9 @@
 \*------------------------------------*/
 
 :root {
+    --globa-page-color: #20223A;
+    --global-page-backgroundColor: #white;
+
     --global-color-alpha-light: #4F95FF;
     --global-color-alpha: #3385FF;
     --global-color-alpha-dark: #2E77E6;
@@ -46,6 +49,14 @@
     --global-whitespace-lg: calc(var(--global-baseline) * 3); /* = 24px */  
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --global-page-color: White;
+        --global-page-backgroundColor: var(--global-color-neutral-xxxx-dark);
+        --global-card-color: #35374D;
+    }
+}
+
 /* CSS variables here */
 
 /*------------------------------------*\
@@ -62,11 +73,11 @@ html {
     font-size: 16px;
     line-height: 1.5;
     font-family: 'Inter', 'Comic Sans MS', Helvetica, arial, sans-serif;
-    color: var(--global-color-neutral-xxxx-dark);
+    color: var(--global-page-color);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--global-color-neutral-xxxx-light);
+    background-color: var(--global-page-backgroundColor);
     height: 100%;
 }
 
@@ -491,13 +502,33 @@ label {
     height: 100%;
     display: block;
 }
+
+.c-logo__path--1 {
+    fill: var(--logo__path--1--fill, var(--global-color-neutral-xxxx-dark));
+}
+
+.c-logo__path--2 {
+    fill: var(--logo__path--2--fill, var(--global-color-alpha));
+}
+
+.c-logo__path--3 {
+    fill: var(--logo__path--3--fill, var(--global-color-alpha-x-dark));
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-logo {
+        --logo__path--1--fill: white;
+        --logo__path--2--fill: var(--logo__path--1--fill);
+        --logo__path--3--fill: var(--logo__path--1--fill);
+    }
+}
 /*
     Component: Card
     ---
     Card with box shadow
 */
 .c-card {
-    background-color: white;
+    background-color: var(--global-card-color);
     border-radius: 3px;
     border: 1px solid #00000005;
     box-shadow: 0 0 0 3px var(--global-color-shadow);
@@ -524,6 +555,12 @@ label {
 .c-card__footer p {
     margin-bottom: 0;
 }
+
+@media (prefers-color-scheme: dark) {
+    .c-card__footer {
+        border-top: 1px solid var(--global-page-backgroundColor);
+    }
+}
 /*
     Component: Forms
     ---
@@ -548,20 +585,28 @@ label {
     border: 1px solid var(--global-color-neutral-xxx-light);
     border-radius: 3px;
     font-family: 'Inter';
-    color: #20223A;
+    color: var(--global-color-neutral-xxxx-dark);
     font-size: 16px;
     line-height: var(--global-whitespace);
     padding: 10px 16px;
 }
 
 .c-input::placeholder {
-    color: #B5B6C0;
+    color: var(--global-color-neutral-x-light);
 }
 
 .c-input:focus {
     outline: none;
     border: 1px solid var(--global-color-alpha);
     box-shadow: 0 0 0 3px #3385FF4d;
+}
+
+@media (prefers-color-scheme: dark) {
+    .c-input {
+        background: var(--global-page-backgroundColor);
+        border: 1px solid var(--global-page-backgroundColor);
+        color: var(--global-color-neutral-xxx-light);
+    }
 }
 
 /*
@@ -574,7 +619,7 @@ label {
     font-size: 14px;
     line-height: var(--global-whitespace-md);
     margin-bottom: var(--global-baseline);
-    color: #606274;
+    color: var(--global-color-neutral-x-light, var(--global-color-neutral-x-dark));
 }
 
 .c-label--option {
