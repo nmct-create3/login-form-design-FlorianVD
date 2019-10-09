@@ -40,6 +40,10 @@
     --global-baseline: 8px;
     --global-whitespace: calc(var(--global-baseline) * 3); /* = 24px */
     --global-whitespace-xl: calc(var(--global-whitespace) * 2); /* = 48px */
+    --global-whitespace-xs: calc(var(--global-baseline) / 2); /* = 4px */
+    --global-whitespace-sm: var(--global-baseline); /* = 8px */
+    --global-whitespace-md: calc(var(--global-baseline) * 2); /* = 16px */
+    --global-whitespace-lg: calc(var(--global-baseline) * 3); /* = 24px */  
 }
 
 /* CSS variables here */
@@ -226,7 +230,7 @@ label {
 
 .o-row {
     position: relative;
-    padding: 24px 24px 0;
+    padding: var(--global-whitespace) var(--global-whitespace) 0;
 }
 
 .o-row--login {
@@ -241,7 +245,7 @@ label {
 
 .o-row--lg {
     padding-top: 48px;
-    padding-bottom: 24px;
+    padding-bottom: var(--global-whitespace);
 }
 
 .o-row--xl {
@@ -287,7 +291,7 @@ label {
 }
 
 .o-section + .o-section {
-    padding-top: 24px;
+    padding-top: var(--global-whitespace);
 }
 
 @media (min-width: 768px) {
@@ -345,7 +349,7 @@ label {
 }
 
 .o-layout--gutter-lg > .o-layout__item {
-    padding: 0 24px;
+    padding: 0 var(--global-whitespace);
 }
 
 .o-layout--gutter-xl {
@@ -478,7 +482,7 @@ label {
     Website main logo
 */
 .c-logo {
-    height: 24px;
+    height: var(--global-whitespace);
     display: flex;
     justify-content: center;
 }
@@ -513,7 +517,7 @@ label {
 }
 
 .c-card__footer {
-    padding: 24px 0;
+    padding: var(--global-whitespace) 0;
     border-top: 1px solid var(--global-color-neutral-xxx-light);
     text-align: center;
 }
@@ -546,7 +550,7 @@ label {
     font-family: 'Inter';
     color: #20223A;
     font-size: 16px;
-    line-height: 24px;
+    line-height: var(--global-whitespace);
     padding: 10px 16px;
 }
 
@@ -568,14 +572,14 @@ label {
 
 .c-label {
     font-size: 14px;
-    line-height: 16px;
-    margin-bottom: 8px;
+    line-height: var(--global-whitespace-md);
+    margin-bottom: var(--global-baseline);
     color: #606274;
 }
 
 .c-label--option {
     margin-bottom: 0;
-    margin-left: 8px;
+    margin-left: var(--global-baseline);
 }
 
 /* If a input is focused within the form-field class change te color of the label */
